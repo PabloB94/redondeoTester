@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class main {
@@ -50,20 +51,23 @@ public class main {
 	    }
 	    numInicial = numInicial + "]";
 	    
-	    String test = "redondearDecimal (" + numInicial+", " + tipoRedondeo + ", redondeo(" + tipoRedondeo; 
+	    String test = "redondearDecimal(" + numInicial+", " + tipoRedondeo + ", redondeo(" + tipoRedondeo; 
 	    test = test + ", numeroOriginal(" + numInicial2 + "), numeroRedondeado(" + numFinal + "))).";
 	    System.out.println(test);
 	}
 	
 	private static String finalNum(char[] input) {
 		String res = "',', [";
+		while(input[input.length - 1] == '0') {
+			input = Arrays.copyOf(input, input.length-1);
+		}
 		if(input.length == 0) return res + "], []";
 		for (int i = 0; i < input.length ; i++) {
 			if(input[i] == '.') {
 				res = res + "], [";
 			}else {
 				if(i != 0 && input[i-1] != '.') res = res + ",";
-				if(input[i] != '0') res = res + toPeano(input[i]);
+				res = res + toPeano(input[i]);
 			}			
 		}
 		return res + "]";
