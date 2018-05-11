@@ -19,6 +19,7 @@ public class main {
 			    success = true;
 			    scanner.close();
 			} catch(Exception e){
+				System.out.println(e.getMessage());
 				System.out.println("Error parsing input. Please, try again.");
 			}			
 		}
