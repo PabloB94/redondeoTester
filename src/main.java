@@ -4,6 +4,21 @@ import java.util.Scanner;
 public class main {
 
 	public static void main(String[] args) {
+		System.out.println("Enter the number of the problem to test (1 or 2)");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.next();
+		switch(input) {
+			case "1":
+				ej1();
+				break;
+			case "2":
+				ej2();
+				break;
+		}
+		scanner.close();	
+	}	
+		
+	private static void ej1() {
 		Scanner scanner = new Scanner(System.in);
 		Boolean success = false;
 		float ni = 0;
@@ -55,6 +70,45 @@ public class main {
 	    test = test + ", numeroOriginal(" + numInicial2 + "), numeroRedondeado(" + numFinal + "))).";
 	    System.out.println(test);
 	}
+	
+	private static void ej2() {
+		String test = "esCuadradoFantasticoSecreto([[";
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("How many lines are there in the array?");
+		int lines = scanner.nextInt();
+		for (int i = 0; i < lines; i++) {
+			boolean valid = false;
+			while(!valid) {
+				System.out.println("Enter line " + i + " without any separators");
+				try {
+					String input = scanner.next();
+					char[] numbers = input.toCharArray();
+					if(numbers.length != lines) {
+						int a = 5/0;
+					}else {
+						for (int j = 0; j < numbers.length; j++) {
+							if(j != 0) test = test + ",";
+							test = test + toPeano(numbers[j]);
+						}
+						test = test + "]";
+						if (i != lines - 1) test = test + ",[";
+						valid = true;
+					}
+					
+				}catch(Exception e) {
+					System.out.println("Invalid format. Please, try again");
+				}
+			}
+		}
+		test = test +"],";
+		System.out.println("What's the secret number?");
+		int secretInt = scanner.nextInt();
+		char secret = (char)(secretInt + '0');
+		test = test + toPeano(secret) + ").";
+		scanner.close();
+		System.out.println(test);
+	}
+	
 	
 	private static String finalNum(char[] input) {
 		String res = "',', [";
